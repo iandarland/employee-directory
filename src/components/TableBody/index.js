@@ -1,4 +1,5 @@
 import React from 'react'
+import Moment from 'moment';
 
 function TableBody(props) {
     return (
@@ -7,7 +8,8 @@ function TableBody(props) {
             <td>{props.firstName}</td>
             <td>{props.lastName}</td>
             <td>{props.email}</td>
-            <td>{props.dob}</td>
+            <td>{Moment(props.dob).format('MM-DD-YYYY')}</td>
+            {console.log(props.dob)}
         </tr>
     )
 }

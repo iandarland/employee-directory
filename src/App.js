@@ -1,7 +1,6 @@
 import React from "react";
 import Wrapper from "./components/Wrapper";
 // import Title from './components/Title';
-// import friends from './friends.json';
 import SearchBar from "./components/SearchBar";
 import TableHead from "./components/TableHead";
 import TableBody from "./components/TableBody";
@@ -14,29 +13,39 @@ class App extends React.Component {
 
   componentDidMount() {
     axios.get(
-        `https://randomuser.me/api/?inc=name,email,dob,phone,picture&results=10`
+        `https://randomuser.me/api/?inc=name,email,dob,phone,picture&results=50`
       )
       .then((res) => {;
-        const employees = res.data.results;
+        const employees = res.data.results.map((item) => {
+          return {
+            image: item.picture.thumbnail,
+            firstName: item.name.first,
+            lastName: item.name.last,
+            email: item.email,
+            dob: item.dob.date
+          }
+        })
         this.setState({ employees });
       });
   }
-  // removeFriend = id => {
-  //   const friends = this.state.friends.filter(friend => friend.id !== id);
-  //    this.setState({ friends });
-  // };
+
   onSort(event, sortKey) {
     let randomBoolean = Math.random() < 0.5;
-    let randBool=randomBoolean;
+    // let randBool=randomBoolean;
     const employees = this.state.employees;
     console.log(employees)
     //ascending
-    if(randomBoolean){employees.sort((a,b) => b[sortKey].localeCompare(a[sortKey]))
-    } else {employees.sort((a,b) => a[sortKey].localeCompare(b[sortKey]))
+    if(randomBoolean){
+      employees.sort((a,b) => b[sortKey].localeCompare(a[sortKey]))
+      this.setState({ employees })
+      return randomBoolean = false
+
+    } else {
+    //decending
+      employees.sort((a,b) => a[sortKey].localeCompare(b[sortKey]))
+      this.setState({ employees })
+      randomBoolean = true
     }
-    randBool = !randomBoolean
-    //descending
-    this.setState({ employees })
   }
 
   render() {
@@ -46,18 +55,18 @@ class App extends React.Component {
         <TableHead>
           <tr>
             <th>image</th>
-            <th onClick={e => this.onSort(e, 'employees.name.first')}>First Name</th>
-            <th>Last Name</th>
+            <th onClick={e => this.onSort(e, 'firstName')}>First Name</th>
+            <th onClick={e => this.onSort(e, 'lastName')}>Last Name</th>
             <th>email</th>
             <th>DOB</th>
           </tr>
           {this.state.employees.map((item) => (
             <TableBody
-              image={item.picture.thumbnail}
-              firstName={item.name.first}
-              lastName={item.name.last}
+              image={item.image}
+              firstName={item.firstName}
+              lastName={item.lastName}
               email={item.email}
-              dob={item.dob.date}
+              dob={item.dob}
             />
           ))}
         </TableHead>
