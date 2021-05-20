@@ -9,7 +9,6 @@ function TableBody(props) {
             <td>{props.lastName}</td>
             <td>{props.email}</td>
             <td>{Moment(props.dob).format('MM-DD-YYYY')}</td>
-            {console.log(props.dob)}
         </tr>
     )
 }
