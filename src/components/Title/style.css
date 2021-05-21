@@ -1,20 +1,27 @@
+
+
 .title {
-  width: 100%;
+  width: 100% !important;
   text-align: center;
   font-size: 3rem;
-  background-color: #00db9a;
-  color: #ffffff
+  background-image: url("../../assets/background.jpeg");
+
+  /* background-color: #00db9a; */
+  color: #000000
   /* margin-bottom: 50px; */
 }
 
 h1 {
   font-size: 54px;
+  font-family: 'Arimo', sans-serif;
 }
 
 h3 {
   font-size: 24px;
+  font-family: 'Gudea', sans-serif
 }
 
 p {
   font-size: 18px;
+  font-family: 'Catamaran', sans-serif;
 }
