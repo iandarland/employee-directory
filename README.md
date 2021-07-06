@@ -6,7 +6,7 @@
 
 Easily navigate your team roster with the employee directory app. Your employees can be quickly sorted by first name or last name. If needed quicky search for a specific employee using the search bar. Employees can be searched by first name, last name and date of birth. 
 
-[Deployed Employee Directory App](www.github.com/iandarland)
+[Deployed Employee Directory App]("https://employee-directory-iand.herokuapp.com/")
 
 ## Table of Contents
 
